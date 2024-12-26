@@ -11,24 +11,22 @@ export function getGreatestDiscoveryYear(data) {
   // feel free to import your `maxBy` or `minBy` methods from previous lessons
   
   // get count of years and put them into a dictionary
-  // I'm using a reducer but for loop could work aswell
-  let discoverDict = data.asteroids.reduce(
-    (counts, currentAsteroid) => {
-      //check if the value exists in the dictionary, if not use a default value of 0 and increment
-      counts[currentAsteroid.discoveryYear] = (counts[currentAsteroid.discoveryYear] ?? 0) + 1
-      return counts;
-    }, {} // default empty dictionary
-  )
+  let discoveryDict = {}
+
+  for(const {discoveryYear} of data.asteroids) {
+    discoveryDict[discoveryYear] = (discoveryDict[discoveryYear] ?? 0) + 1;
+  }
 
   // Convert dictionary to list and iterate over the values
   const maxYear = maxBy(
-    Object.entries(discoverDict),
-    ([year, count]) => count
+    Object.entries(discoveryDict),
+    ([_year, count]) => count
   )
 
   return Number(maxYear[0])
 
-  //I'm not sure if this i the approach that you guys wanted
+  // I'm not sure if this i the approach that you guys wanted. 
+  // I previously used a reducer for the occurance counter but it was overly complicated
   
 }
 
