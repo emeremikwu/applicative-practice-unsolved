@@ -1,4 +1,4 @@
-import { data } from "../data/data";
+import { data } from "../data/data.js";
 
 // SPACE DATA EXERCISE 12
 // Return the sum of all moons for all planets
@@ -6,8 +6,11 @@ import { data } from "../data/data";
 
 export function allPlanetsMoonsCount(data) {
   // Your code goes here...
+  return data.planets.reduce(
+    (accumulator, currentPlanet) => accumulator + (currentPlanet.moonsCount ?? 0),
+    0
+  )
 }
-
 
 
 // === TEST YOURSELF ===
